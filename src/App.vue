@@ -16,7 +16,11 @@
         </a>
       </div>
 
-      <div class="navbar-menu" id="navbar-menu" :class="{'is-active':showMobileMenu}">
+      <div
+        class="navbar-menu"
+        id="navbar-menu"
+        :class="{ 'is-active': showMobileMenu }"
+      >
         <div class="navbar-end">
           <router-link to="/summer" class="navbar-item">Summer</router-link>
           <router-link to="/winter" class="navbar-item">Winter</router-link>
@@ -27,7 +31,7 @@
 
               <router-link to="/cart" class="button is-success">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                <span>Cart</span>
+                <span>Cart ({{ cartTotalLength }})</span>
               </router-link>
             </div>
           </div>
@@ -49,7 +53,27 @@ export default {
   data() {
     return {
       showMobileMenu: false,
+      cart: {
+        items: [],
+      },
     }
+  },
+  computed: {
+    cartTotalLength() {
+      let totalLength = 0
+      this.cart.items.forEach((item) => {
+        totalLength += item.quantity
+      })
+
+      return totalLength
+    },
+  },
+  beforeCreate() {
+    // we are using commit for call the mutations in the vuex store
+    this.$store.commit('initializeStore')
+  },
+  mounted() {
+    this.cart = this.$store.state.cart
   },
 }
 </script>
