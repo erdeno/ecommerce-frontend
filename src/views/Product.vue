@@ -40,10 +40,11 @@ export default {
     this.getProduct()
   },
   methods: {
-    getProduct() {
+    async getProduct() {
+      this.$store.commit('setIsLoading', true)
       const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
-      axios
+      await axios
         .get(`/api/v1/products/${category_slug}/${product_slug}`)
         .then((response) => {
           this.product = response.data
@@ -51,6 +52,7 @@ export default {
         .catch((error) => {
           console.log(`error`, error)
         })
+      this.$store.commit('setIsLoading', false)
     },
     addToCart() {
       // we are checking if the quantitiy is exist
