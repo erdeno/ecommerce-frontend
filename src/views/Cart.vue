@@ -21,6 +21,7 @@
               v-for="item in cart.items"
               :key="item.product.id"
               :initialItem="item"
+              v-on:removeFromCart="removeItem"
             />
           </tbody>
         </table>
@@ -56,6 +57,11 @@ export default {
   },
   mounted() {
     this.cart = this.$store.state.cart
+  },
+  methods: {
+    removeItem(item) {
+      this.cart.items = this.cart.items.filter((i) => i.product.id !== item.product.id)
+    },
   },
   computed: {
     cartTotalLength() {
