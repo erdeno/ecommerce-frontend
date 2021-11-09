@@ -51,6 +51,9 @@ export default {
       errors: [],
     }
   },
+  mounted() {
+    document.title = 'SignUp | Djackets'
+  },
   methods: {
     submitForm() {
       this.errors = []
