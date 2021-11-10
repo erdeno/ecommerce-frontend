@@ -29,7 +29,7 @@ const routes = [
     component: Cart,
   },
   {
-    path: 'cart/success',
+    path: '/cart/success',
     name: 'Success',
     component: Success,
   },
