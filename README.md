@@ -1,4 +1,5 @@
-# leatherjackets_frontend
+# eCommerce frontend
+I made this project for practice django rest framework and vuejs
 
 ## Project setup
 ```
